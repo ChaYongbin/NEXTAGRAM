@@ -38,8 +38,9 @@ public class Proxy {
                     .getString(R.string.pref_article_number);
             Log.e("Article is : " , prefArticleNumberKey);
             String articleNumber = pref.getString(prefArticleNumberKey, "0");
-            Log.e("Article Number is : " , articleNumber);
-            String serverUrl = this.serverUrl + "/loadData/?ArticleNumber=" + articleNumber;
+            int num = Integer.parseInt(articleNumber) + 1;
+            Log.e("Article Number is : " , String.valueOf(num));
+            String serverUrl = "http://192.168.56.1:5010/loadData/?ArticleNumber=" + num;
             URL url = new URL(serverUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 

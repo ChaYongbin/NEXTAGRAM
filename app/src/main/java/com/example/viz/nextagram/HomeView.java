@@ -84,6 +84,8 @@ public class HomeView extends Activity implements AdapterView.OnItemClickListene
 
     private void listView(ArrayList<ArticleDTO> arrayList) {
         ListView listView = (ListView) findViewById(R.id.customlist_listview);
+        dao = new ProviderDao(getApplicationContext());
+        articleDTOList = dao.getArticleList();
 
         Cursor mCursor = getContentResolver().query(
                 NextagramContract.Articles.CONTENT_URI,
@@ -116,8 +118,7 @@ public class HomeView extends Activity implements AdapterView.OnItemClickListene
         // 수정 전 코드
         // Intent intentView = new Intent(view.getContext(), ArticleView.class);
         Intent intent = new Intent(".ArticleView");
-        String articleNumber = articleDTOList.get(position).getArticleNumber() + "";
-        intent.putExtra("ArticleNumber", ((HomeViewAdapter.ViewHolderItem)view.getTag()).articleNumber);
+        intent.putExtra("ArticleNumber", articleDTOList.get(position).getArticleNumber()+"");
         startActivity(intent);
     }
 }

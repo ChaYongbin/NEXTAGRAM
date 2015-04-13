@@ -37,10 +37,7 @@ public class SyncDataService extends Service {
             @Override
             public void run() {
                 String jsonData = proxy.getJSON();
-                if (jsonData != null) {
-                    dao.insertJsonData(jsonData);
-
-                }
+                dao.insertJsonData(jsonData);
             }
         };
 
