@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.55"
+            android:gravity="center_vertical"
+            android:padding="3dp"
+            android:text="Writer"
+            android:id="@+id/viewer_writer"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.45"
+            android:gravity="center_vertical|right"
+            android:padding="3dp"
+            android:text="WriteDate"
+            android:id="@+id/viewer_write_time"/>
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
+        android:id="@+id/viewer_image_view"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:gravity="center_vertical"
+        android:padding="3dp"
+        android:text="Title"
+        android:id="@+id/viewer_title"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.35"
+        android:padding="3dp"
+        android:text="Contents"
+        android:id="@+id/viewer_content"/>
+
+
+</LinearLayout>
