@@ -1,20 +1,26 @@
 # NEXTAGRAM
 NHN NEXT에서 진행한 사진 SNS인 NEXTAGRAM PROJECT
 
-DAY 3
+3주차
 : 데이터베이스 맛보기 넥스타그램
 
-DAY 4
+4주차
 : 네트워크와 연결하기 
 
-DAY 5 
+5주차 
 : 별도 진행 (액션바 만들기)
 
-DAY 6 
+6주차 
 : GC 적용, 메모리 성능 테스트 
 
-DAY 7
+7주차
 : 리펙토링
 
-DAY 8
+8주차
 : 주기적으로 데이터 받아오기 (네트워크)
+
+9주차
+: MVC Pattern 적용하기 
+
+10주차 
+: GCM 적용하기
