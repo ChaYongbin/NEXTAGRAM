@@ -1,4 +1,4 @@
-package com.example.viz.nextagram;
+package com.example.viz.nextagram.db;
 
 import android.content.Context;
 import android.util.Log;

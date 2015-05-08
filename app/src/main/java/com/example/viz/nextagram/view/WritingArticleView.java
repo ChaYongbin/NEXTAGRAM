@@ -1,4 +1,4 @@
-package com.example.viz.nextagram;
+package com.example.viz.nextagram.view;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -17,6 +17,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.viz.nextagram.R;
+import com.example.viz.nextagram.db.ArticleDTO;
+import com.example.viz.nextagram.network.ArticleWritingProxy;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.apache.http.Header;

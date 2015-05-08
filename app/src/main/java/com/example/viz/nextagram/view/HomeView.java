@@ -1,4 +1,4 @@
-package com.example.viz.nextagram;
+package com.example.viz.nextagram.view;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,80 +12,51 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.viz.nextagram.R;
+import com.example.viz.nextagram.controller.HomeController;
+import com.example.viz.nextagram.db.ArticleDTO;
+import com.example.viz.nextagram.db.ProviderDao;
+import com.example.viz.nextagram.provider.NextagramContract;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.apache.http.Header;
 
-import java.security.Provider;
 import java.util.ArrayList;
 
 
 public class HomeView extends Activity implements AdapterView.OnItemClickListener, OnClickListener {
 
     private final String TAG = HomeView.class.getSimpleName();
-    private static AsyncHttpClient client = new AsyncHttpClient();
-    private Button writeButton;
-    private Button refreshButton;
     private ArrayList<ArticleDTO> articleDTOList;
-    // SharedPreferences
-    private SharedPreferences pref;
-    private ProviderDao dao;
 
+    // HomeController
+    HomeController homeController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        pref = getSharedPreferences(getResources().getString(R.string.pref_name), MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
+        // Home Controller 에게 인스턴스를 할당한다.
+        homeController = new HomeController(getApplicationContext());
+        homeController.initSharedPreferences();
+        homeController.startSyncDataService();
 
-        editor.putString(getResources().getString(R.string.server_ip),
-                getResources().getString(R.string.server_value));
-
-        writeButton = (Button) findViewById(R.id.button1);
-        refreshButton = (Button) findViewById(R.id.button2);
-        writeButton.setOnClickListener(this);
-        refreshButton.setOnClickListener(this);
-
-        Intent intentSync = new Intent("com.example.viz.nextagram.SyncDataService");
-        startService(intentSync);
+        setListView();
 
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // 서버에서 데이터를 가져와서 db에 넣는 부분
-        refreshData();
-        // db로부터 게시판 글을 가져와서 리스트에 넣는 부분
-//        listView(dao.getArticleList()); // refreshData()에서 서버에서 json과 이미지 파일 가져오는 작업이 비동기기 때문에 이게 먼저 실행되기 때문에 처음 화면에 화면에 아무것도 안 보임
+        homeController.refreshData();
     }
 
-    private void refreshData() {
-        client.get("http://192.168.56.1:5010/loadData/", new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int i, Header[] headers, byte[] bytes) {
-                String jsonData = new String(bytes);
-                Log.i("getJSonData", "success: " + jsonData);
-                ProviderDao dao = new ProviderDao(getApplicationContext());
-                dao.insertJsonData(jsonData);
-                listView(dao.getArticleList());
-            }
 
-            @Override
-            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
-                Log.i("getJSonData: ", "fail: " + throwable.getMessage());
-            }
-        });
-
-    }
-
-    private void listView(ArrayList<ArticleDTO> arrayList) {
+    private void setListView() {
+        // CustomAdapter 적용
         ListView listView = (ListView) findViewById(R.id.customlist_listview);
-        dao = new ProviderDao(getApplicationContext());
-        articleDTOList = dao.getArticleList();
 
         Cursor mCursor = getContentResolver().query(
                 NextagramContract.Articles.CONTENT_URI,
@@ -96,6 +67,7 @@ public class HomeView extends Activity implements AdapterView.OnItemClickListene
         HomeViewAdapter customAdapter = new HomeViewAdapter(this, mCursor, R.layout.custom_list_row);
 
         listView.setAdapter(customAdapter);
+        // listView에 ClickListener 설정
         listView.setOnItemClickListener(this);
     }
 
@@ -108,7 +80,9 @@ public class HomeView extends Activity implements AdapterView.OnItemClickListene
                 startActivity(intentWrite);
                 break;
             case R.id.button2:
-                refreshData();
+                homeController.refreshData();
+                break;
+            default:
                 break;
         }
     }

@@ -1,4 +1,4 @@
-package com.example.viz.nextagram;
+package com.example.viz.nextagram.provider;
 
 import java.util.Locale;
 
@@ -11,7 +11,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.text.TextUtils;
-import android.util.Log;
 
 public class NextagramProvider extends ContentProvider {
     private static final String TAG = NextagramProvider.class.getSimpleName();

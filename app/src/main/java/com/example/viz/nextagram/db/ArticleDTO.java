@@ -1,4 +1,4 @@
-package com.example.viz.nextagram;
+package com.example.viz.nextagram.db;
 
 /**
  * Created by viz on 2015. 3. 18..

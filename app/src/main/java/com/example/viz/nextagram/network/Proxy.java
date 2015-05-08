@@ -1,8 +1,11 @@
-package com.example.viz.nextagram;
+package com.example.viz.nextagram.network;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+
+import com.example.viz.nextagram.R;
+import com.example.viz.nextagram.db.ArticleDTO;
 
 import org.json.JSONArray;
 import org.json.JSONException;

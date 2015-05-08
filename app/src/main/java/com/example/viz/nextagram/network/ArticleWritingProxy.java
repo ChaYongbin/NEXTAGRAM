@@ -1,5 +1,6 @@
-package com.example.viz.nextagram;
+package com.example.viz.nextagram.network;
 
+import com.example.viz.nextagram.db.ArticleDTO;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;

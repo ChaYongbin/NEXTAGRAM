@@ -1,4 +1,4 @@
-package com.example.viz.nextagram;
+package com.example.viz.nextagram.provider;
 
 import android.net.Uri;
 import android.provider.BaseColumns;

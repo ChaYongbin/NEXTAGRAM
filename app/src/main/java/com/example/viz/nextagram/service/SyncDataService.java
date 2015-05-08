@@ -1,11 +1,16 @@
 
-package com.example.viz.nextagram;
+package com.example.viz.nextagram.service;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.example.viz.nextagram.db.ArticleDTO;
+import com.example.viz.nextagram.db.ProviderDao;
+import com.example.viz.nextagram.network.Proxy;
+
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -36,8 +41,8 @@ public class SyncDataService extends Service {
         mTask = new TimerTask() {
             @Override
             public void run() {
-                String jsonData = proxy.getJSON();
-                dao.insertJsonData(jsonData);
+                ArrayList<ArticleDTO> articleList = proxy.getArticleDTO();
+                dao.insertData(articleList);
             }
         };
 

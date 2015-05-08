@@ -1,4 +1,4 @@
-package com.example.viz.nextagram;
+package com.example.viz.nextagram.db;
 
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -12,6 +12,9 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
+import com.example.viz.nextagram.provider.NextagramContract;
+import com.example.viz.nextagram.R;
 
 public class ProviderDao {
     private static final String TAG = ProviderDao.class.getSimpleName();
@@ -138,11 +141,13 @@ public class ProviderDao {
         String writeDate;
         String imgName;
 
-        Cursor cursor = context.getContentResolver().query(NextagramContract.Articles.CONTENT_URI, NextagramContract.Articles.PROJECTION_ALL, null, null,
+        String where = "_id = " + articleNumber;
+
+        Cursor cursor = context.getContentResolver().query(NextagramContract.Articles.CONTENT_URI,
+                NextagramContract.Articles.PROJECTION_ALL, where, null,
                 NextagramContract.Articles._ID + " ASC");
 
         if (cursor != null) {
-            cursor.moveToPosition(articleNumber - 1);
             articleNumber = cursor.getInt(0);
             title = cursor.getString(1);
             writer = cursor.getString(2);
@@ -158,6 +163,8 @@ public class ProviderDao {
         return article;
     }
 
+
+    
     public void insertData(ArrayList<ArticleDTO> articleList) {
         int articleNumber;
         String title;

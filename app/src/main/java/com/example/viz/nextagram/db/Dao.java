@@ -13,8 +13,8 @@
 //import java.util.ArrayList;
 //
 ///**
-// * Created by viz on 2015. 3. 16..
-// */
+//* Created by viz on 2015. 3. 16..
+//*/
 //public class Dao {
 //    private Context context;
 //    private SQLiteDatabase database;

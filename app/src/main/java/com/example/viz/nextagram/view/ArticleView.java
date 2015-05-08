@@ -1,4 +1,4 @@
-package com.example.viz.nextagram;
+package com.example.viz.nextagram.view;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -8,6 +8,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.viz.nextagram.util.ImageLoader;
+import com.example.viz.nextagram.R;
+import com.example.viz.nextagram.db.ArticleDTO;
+import com.example.viz.nextagram.db.ProviderDao;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
