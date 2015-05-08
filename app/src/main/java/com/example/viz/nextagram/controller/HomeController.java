@@ -32,7 +32,8 @@ public class HomeController {
         sharedPreferences = context.getSharedPreferences(context.getResources().
                 getString(R.string.pref_name), context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(context.getResources().getString(R.string.server_ip), context.getResources().getString(R.string.server_value));
+        editor.putString(context.getResources().getString(R.string.server_ip),
+                context.getResources().getString(R.string.server_value));
         editor.putString(context.getResources().getString(R.string.pref_article_number), 0 + "");
         editor.commit();
     }
